@@ -20,24 +20,24 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BEo-6h-BPm">
-                                    <size key="itemSize" width="414" height="389"/>
+                                    <size key="itemSize" width="414" height="441"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="o8m-rk-YGE" customClass="PhotoJournalCell" customModule="photoJournal" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="389"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="441"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="jC1-YT-2GE">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="389"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="441"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jaM-hE-qZa">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="322"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="338"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohy-09-me1">
-                                                    <rect key="frame" x="40" y="360" width="42" height="21"/>
+                                                    <rect key="frame" x="40" y="412" width="42" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="pDt-sm-unq"/>
                                                     </constraints>
@@ -45,17 +45,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMX-cF-id5">
-                                                    <rect key="frame" x="186" y="330" width="42" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="5TQ-Ad-hHQ"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="16U-vS-5Hy">
-                                                    <rect key="frame" x="368" y="333" width="30" height="48"/>
+                                                    <rect key="frame" x="368" y="385" width="30" height="48"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="48" id="qJ3-bD-UPH"/>
                                                     </constraints>
@@ -64,14 +55,23 @@
                                                         <action selector="photoSettingPressed:" destination="o8m-rk-YGE" eventType="touchUpInside" id="tLy-EI-oGT"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMX-cF-id5">
+                                                    <rect key="frame" x="186" y="358" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="5TQ-Ad-hHQ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Ohy-09-me1" firstAttribute="leading" secondItem="jC1-YT-2GE" secondAttribute="leading" constant="40" id="0Hv-vM-ufC"/>
                                                 <constraint firstItem="jaM-hE-qZa" firstAttribute="centerX" secondItem="jC1-YT-2GE" secondAttribute="centerX" id="1OU-tK-42T"/>
-                                                <constraint firstItem="16U-vS-5Hy" firstAttribute="top" secondItem="jaM-hE-qZa" secondAttribute="bottom" constant="11" id="8Gk-HD-Dnh"/>
+                                                <constraint firstItem="16U-vS-5Hy" firstAttribute="top" secondItem="jaM-hE-qZa" secondAttribute="bottom" constant="47" id="8Gk-HD-Dnh"/>
                                                 <constraint firstAttribute="trailing" secondItem="16U-vS-5Hy" secondAttribute="trailing" constant="16" id="Cnd-X6-TVG"/>
                                                 <constraint firstItem="jaM-hE-qZa" firstAttribute="leading" secondItem="jC1-YT-2GE" secondAttribute="leading" id="DCo-eK-JjG"/>
-                                                <constraint firstAttribute="bottom" secondItem="vMX-cF-id5" secondAttribute="bottom" constant="38" id="MHd-9X-eV4"/>
+                                                <constraint firstAttribute="bottom" secondItem="vMX-cF-id5" secondAttribute="bottom" constant="62" id="MHd-9X-eV4"/>
                                                 <constraint firstAttribute="trailing" secondItem="jaM-hE-qZa" secondAttribute="trailing" id="T0B-Qf-lp9"/>
                                                 <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Ohy-09-me1" secondAttribute="trailing" constant="332" id="b3B-M9-UYu"/>
                                                 <constraint firstItem="jaM-hE-qZa" firstAttribute="top" secondItem="jC1-YT-2GE" secondAttribute="top" id="dUB-gb-1Y3"/>
@@ -79,11 +79,11 @@
                                                 <constraint firstAttribute="bottom" secondItem="Ohy-09-me1" secondAttribute="bottom" constant="8" id="lGs-zh-Zfv"/>
                                                 <constraint firstAttribute="bottom" secondItem="16U-vS-5Hy" secondAttribute="bottom" constant="8" id="nT1-Fl-nv5"/>
                                                 <constraint firstItem="16U-vS-5Hy" firstAttribute="leading" secondItem="vMX-cF-id5" secondAttribute="trailing" constant="140" id="ncA-5C-gLR"/>
-                                                <constraint firstItem="vMX-cF-id5" firstAttribute="top" secondItem="jaM-hE-qZa" secondAttribute="bottom" constant="8" id="tkO-WG-NSP"/>
+                                                <constraint firstItem="vMX-cF-id5" firstAttribute="top" secondItem="jaM-hE-qZa" secondAttribute="bottom" constant="20" id="tkO-WG-NSP"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <size key="customSize" width="414" height="389"/>
+                                        <size key="customSize" width="414" height="441"/>
                                         <connections>
                                             <outlet property="JournalNameLabel" destination="vMX-cF-id5" id="pDW-md-NtF"/>
                                             <outlet property="date" destination="Ohy-09-me1" id="hiW-D7-NqC"/>
@@ -139,7 +139,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vxk-If-5jI">
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
-                                    <barButtonItem title="Choose Photo" id="g3C-0H-6xE"/>
+                                    <barButtonItem title="Choose Photo" id="g3C-0H-6xE">
+                                        <connections>
+                                            <action selector="choosePhotoButtonPressed:" destination="MA2-qg-lj1" id="R2B-te-bu6"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Vw4-7r-uho"/>
                                     <barButtonItem style="plain" systemItem="camera" id="Lhz-IM-dkb"/>
                                 </items>
@@ -153,7 +157,11 @@
                                                 <action selector="cancelButton:" destination="MA2-qg-lj1" id="z0c-XD-evJ"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="tXk-lK-Zoz"/>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="tXk-lK-Zoz">
+                                            <connections>
+                                                <action selector="saveButtonPressed:" destination="MA2-qg-lj1" id="Nd3-TV-XC5"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -163,7 +171,7 @@
                                     <constraint firstAttribute="height" constant="347" id="q3f-cw-OFZ"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter photo description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bad-gJ-WaO">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bad-gJ-WaO">
                                 <rect key="frame" x="26" y="119" width="362" height="202"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -195,6 +203,7 @@
                         <viewLayoutGuide key="safeArea" id="JCc-8q-cn5"/>
                     </view>
                     <connections>
+                        <outlet property="descriptionTextView" destination="bad-gJ-WaO" id="XqX-J1-imZ"/>
                         <outlet property="photoImage" destination="3tk-Ei-YhT" id="6ns-5V-tLx"/>
                     </connections>
                 </viewController>
