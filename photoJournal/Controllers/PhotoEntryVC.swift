@@ -20,6 +20,7 @@ class PhotoEntryVC: UIViewController {
     //MARK: -- Properties
     
     var photoLibraryAccess = false
+    var photoDesc = ""
     
     var image = UIImage() {
         didSet {
@@ -38,8 +39,20 @@ class PhotoEntryVC: UIViewController {
     
     
     //MARK: -- IBActions
+  
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        guard let data = image.pngData() else {
+            print("image could not be converted to data")
+            return
+        }
         
+        let newJournal = PhotoJournal(image: data, description: descriptionTextView.text)
+        DispatchQueue.global(qos: .utility).async {
+          try? JournalPersistenceHelper.manager.save(newJournal: newJournal)
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
@@ -47,7 +60,7 @@ class PhotoEntryVC: UIViewController {
     }
     
     //MARK: -- OTHER Functions
-    
+
     private func setUpTextViewPlaceholder() {
         placeholderLabel = UILabel()
         placeholderLabel.text = "Enter photo description..."
@@ -148,7 +161,15 @@ extension PhotoEntryVC: UIImagePickerControllerDelegate, UINavigationControllerD
 
 //MARK: -- Text View extention
 extension PhotoEntryVC: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        if (text == "\n") {
+            textView.resignFirstResponder()
+        }
+        return true
+    }
 
+    
     func textViewDidChange(_ textView: UITextView) {
         placeholderLabel.isHidden = !textView.text.isEmpty
     }

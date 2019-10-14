@@ -26,7 +26,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="o8m-rk-YGE" customClass="PhotoJournalCell" customModule="photoJournal" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoJournalCell" id="o8m-rk-YGE" customClass="PhotoJournalCell" customModule="photoJournal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="441"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="jC1-YT-2GE">
@@ -35,6 +35,10 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jaM-hE-qZa">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="338"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="414" id="pBu-Uj-KCV"/>
+                                                        <constraint firstAttribute="height" constant="338" id="prG-j3-PK2"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohy-09-me1">
                                                     <rect key="frame" x="40" y="412" width="42" height="21"/>
@@ -48,6 +52,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="16U-vS-5Hy">
                                                     <rect key="frame" x="368" y="385" width="30" height="48"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="m0k-DV-8hd"/>
                                                         <constraint firstAttribute="height" constant="48" id="qJ3-bD-UPH"/>
                                                     </constraints>
                                                     <state key="normal" title="• • •"/>
@@ -78,7 +83,7 @@
                                                 <constraint firstItem="vMX-cF-id5" firstAttribute="centerX" secondItem="jC1-YT-2GE" secondAttribute="centerX" id="k8e-Do-kqx"/>
                                                 <constraint firstAttribute="bottom" secondItem="Ohy-09-me1" secondAttribute="bottom" constant="8" id="lGs-zh-Zfv"/>
                                                 <constraint firstAttribute="bottom" secondItem="16U-vS-5Hy" secondAttribute="bottom" constant="8" id="nT1-Fl-nv5"/>
-                                                <constraint firstItem="16U-vS-5Hy" firstAttribute="leading" secondItem="vMX-cF-id5" secondAttribute="trailing" constant="140" id="ncA-5C-gLR"/>
+                                                <constraint firstItem="16U-vS-5Hy" firstAttribute="leading" relation="lessThanOrEqual" secondItem="vMX-cF-id5" secondAttribute="trailing" constant="140" id="ncA-5C-gLR"/>
                                                 <constraint firstItem="vMX-cF-id5" firstAttribute="top" secondItem="jaM-hE-qZa" secondAttribute="bottom" constant="20" id="tkO-WG-NSP"/>
                                             </constraints>
                                         </collectionViewCellContentView>
@@ -92,9 +97,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="48U-9R-NAI">
-                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="48U-9R-NAI">
+                                <rect key="frame" x="0.0" y="818" width="414" height="49"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="IlW-d9-vjQ"/>
                                     <barButtonItem systemItem="add" id="fsy-Kf-YwV">
@@ -114,9 +118,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Bot-vX-CO6" secondAttribute="trailing" id="APf-oA-qvm"/>
+                            <constraint firstItem="48U-9R-NAI" firstAttribute="centerX" secondItem="Bot-vX-CO6" secondAttribute="centerX" id="XXx-Jv-B61"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Bot-vX-CO6" secondAttribute="bottom" id="cgp-qT-Njc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="48U-9R-NAI" secondAttribute="trailing" id="dnn-wG-BTH"/>
                             <constraint firstItem="Bot-vX-CO6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kCK-mM-0iu"/>
                             <constraint firstItem="Bot-vX-CO6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="nFZ-eC-jKl"/>
+                            <constraint firstItem="48U-9R-NAI" firstAttribute="top" secondItem="Bot-vX-CO6" secondAttribute="bottom" constant="-44" id="oA2-a6-fQE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -159,7 +166,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="tXk-lK-Zoz">
                                             <connections>
-                                                <action selector="saveButtonPressed:" destination="MA2-qg-lj1" id="Nd3-TV-XC5"/>
+                                                <action selector="saveButtonPressed:" destination="MA2-qg-lj1" id="HiL-ym-CMN"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

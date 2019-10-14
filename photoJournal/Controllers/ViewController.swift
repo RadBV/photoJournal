@@ -10,39 +10,78 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
+    //MARK: -- Outlets
     @IBOutlet weak var photoCollectionView: UICollectionView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    //MARK: -- Properties
+    
+    var journals = [PhotoJournal]() {
+        didSet {
+            photoCollectionView.reloadData()
+        }
     }
     
+    
+    //MARK: -- Life Cycle Functions
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        photoCollectionView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadData()
+        dump(journals)
+    }
+    
+    //MARK: -- IBActions
     @IBAction func addPhoto(_ sender: UIBarButtonItem) {
         presentPhotoEntryModally()
-        
     }
+    
     @IBAction func settingsButton(_ sender: UIBarButtonItem) {
     }
     
+    //MARK: -- Other Functions
+    
+    func loadData() {
+        do {
+            journals = try JournalPersistenceHelper.manager.getJournals()
+        } catch {
+            print(error)
+        }
+    }
     
     private func presentPhotoEntryModally() {
-        let popoverContent = self.storyboard?.instantiateViewController(withIdentifier: "PhotoEntryVC")
         
-        let photoEntryVC = UINavigationController(rootViewController: popoverContent ?? UIViewController())
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         
+        guard let photoEntryVC = storyboard.instantiateViewController(withIdentifier: "PhotoEntryVC") as? PhotoEntryVC else {
+            return
+        }
+        photoEntryVC.modalPresentationStyle = .currentContext
         self.present(photoEntryVC, animated: true, completion: nil)
     }
 
-    
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+//MARK: -- Extensions
+
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return journals.count
     }
-    */
-
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let currentJournals = journals[indexPath.row]
+        if let cell = photoCollectionView.dequeueReusableCell(withReuseIdentifier: "PhotoJournalCell", for: indexPath) as? PhotoJournalCell {
+            if let image = UIImage(data: currentJournals.image) {
+                cell.image.image = image
+            }
+            cell.JournalNameLabel.text = currentJournals.description
+            return cell
+        }
+        return UICollectionViewCell()
+    }
+    
 }
