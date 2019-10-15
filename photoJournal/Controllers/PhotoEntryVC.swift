@@ -15,10 +15,11 @@ class PhotoEntryVC: UIViewController {
     
     @IBOutlet weak var photoImage: UIImageView!
     @IBOutlet weak var descriptionTextView: UITextView!
-    var placeholderLabel: UILabel!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+
     
     //MARK: -- Properties
-    
+    let imagePlaceholder = #imageLiteral(resourceName: "placeholder")
     var photoLibraryAccess = false
     var photoDesc = ""
     
@@ -28,11 +29,26 @@ class PhotoEntryVC: UIViewController {
         }
     }
     
+    var placeholderLabel: UILabel!
+    
+    var journalToBeEdited: PhotoJournal?
+    var journalIndex = Int()
+    var journal = [PhotoJournal]()
+    
     //MARK: -- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        if journalToBeEdited == nil {
+            setUpTextViewPlaceholder()
+        } else {
+            setEditJournalView()
+        }
+//        if descriptionTextView.text.isEmpty {
+//            placeholderLabel.isHidden = false
+//        } else {
+//            placeholderLabel.isHidden = true
+//        }
         checkPhotoLibraryAccess()
-        setUpTextViewPlaceholder()
         setUpMiscellaneousViewDidLoadThings()
         descriptionTextView.delegate = self
     }
@@ -41,12 +57,13 @@ class PhotoEntryVC: UIViewController {
     //MARK: -- IBActions
   
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        
         guard let data = image.pngData() else {
             print("image could not be converted to data")
             return
         }
         
-        let newJournal = PhotoJournal(image: data, description: descriptionTextView.text)
+        let newJournal = PhotoJournal(image: data, description: descriptionTextView.text, date: Date())
         DispatchQueue.global(qos: .utility).async {
           try? JournalPersistenceHelper.manager.save(newJournal: newJournal)
             DispatchQueue.main.async {
@@ -74,13 +91,19 @@ class PhotoEntryVC: UIViewController {
     
     private func setUpMiscellaneousViewDidLoadThings() {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
-        self.image = #imageLiteral(resourceName: "placeholder")
+        self.image = imagePlaceholder
+        saveButton.isEnabled = false
     }
     
     @objc private func dismissKeyboard() {
         descriptionTextView.resignFirstResponder()
     }
     
+    private func setEditJournalView() {
+        let image = UIImage(data: journalToBeEdited!.image)
+        descriptionTextView.text = journalToBeEdited?.description
+        photoImage.image = image
+    }
     
     //MARK: -- Photo Library Access
     @IBAction func choosePhotoButtonPressed(_ sender: UIBarButtonItem) {
@@ -168,9 +191,16 @@ extension PhotoEntryVC: UITextViewDelegate {
         }
         return true
     }
-
+    
     
     func textViewDidChange(_ textView: UITextView) {
+        if image != imagePlaceholder && descriptionTextView.text != "" {
+            saveButton.isEnabled = true
+        } else if descriptionTextView.text == "" {
+            saveButton.isEnabled = false
+        }
+
         placeholderLabel.isHidden = !textView.text.isEmpty
+
     }
 }

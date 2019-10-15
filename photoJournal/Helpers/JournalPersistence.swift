@@ -19,6 +19,14 @@ struct JournalPersistenceHelper {
         return try persistenceHelper.getObjects()
     }
     
+    func deleteJournal(date: Date) throws {
+        do {
+            let journal =  try getJournals()
+            let newJournals = journal.filter { $0.date != date}
+            try persistenceHelper.replace(elements: newJournals)
+        }
+    }
+    
     private let persistenceHelper = PersistenceHelper<PhotoJournal>(fileName: "PhotoJournal.plist")
 
     private init() {}
